@@ -1,0 +1,47 @@
+# ── Java / Spring Boot ────────────────────────────────────────────────────────
+target/
+build/
+!.mvn/wrapper/maven-wrapper.jar
+*.jar
+*.war
+*.class
+hs_err_pid*
+
+# ── Node / Angular ────────────────────────────────────────────────────────────
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+yarn-error.log*
+
+# ── Environment & secrets ─────────────────────────────────────────────────────
+# Never commit real credentials. Only .env.example is tracked.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+application-local.yml
+application-local.properties
+
+# ── Docker / data volumes ─────────────────────────────────────────────────────
+docker/data/
+postgres-data/
+ollama-data/
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs & temp ───────────────────────────────────────────────────────────────
+*.log
+logs/
+tmp/
