@@ -1,33 +1,57 @@
-# Documentation
+# Documentação
 
-## Contents
+## Documento mestre
 
-| Document | Purpose |
+**[`especificacao-operacional.docx`](especificacao-operacional.docx)** — fonte única de
+verdade sobre o comportamento do sistema (23 páginas, 16 secções). Também disponível
+em [PDF](especificacao-operacional.pdf).
+
+Cobre: requisitos funcionais e não-funcionais, catálogo de regras de segurança clínica,
+regras de negócio, máquinas de estado, arquitetura, modelo de dados, contratos de API,
+casos de erro, observabilidade, cenários de teste, configuração e manual operacional.
+
+> Regra de alteração: qualquer mudança de comportamento começa por uma alteração neste
+> documento, e só depois no código.
+
+## Consulta rápida
+
+| Documento | Para quê |
 |---|---|
-| [`especificacao-funcional-e-tecnica.docx`](especificacao-funcional-e-tecnica.docx) | Full specification: functional requirements (RF-xxx), non-functional requirements, architecture, data model, deployment, risks |
-| [`decisoes-arquiteturais.md`](decisoes-arquiteturais.md) | Architecture decision records — what was decided and what was traded away |
+| [`referencia-rapida.md`](referencia-rapida.md) | Regras, estados e IDs — consulta durante desenvolvimento e revisão de código |
+| [`decisoes-arquiteturais.md`](decisoes-arquiteturais.md) | ADR-001..006 — o que foi decidido e o que se sacrificou |
 
-## Diagrams
+## Identificadores
 
-| Diagram | Shows |
+| Prefixo | Significa |
 |---|---|
-| ![Architecture](diagramas/arquitetura.png) | Container view — backend mediates all access; the AI is never exposed |
-| ![Escalation flow](diagramas/fluxo-escalonamento.png) | The deterministic gate deciding before the AI is consulted |
-| ![Data model](diagramas/modelo-dados.png) | Multi-tenant entity-relationship model |
+| `RF-xxx` | Requisito funcional |
+| `RN-xxx` | Regra de negócio |
+| `RS-xxx` | Regra de segurança clínica |
+| `RNF-xxx` | Requisito não-funcional |
+| `ERR-xxx` | Caso de erro tratado |
+| `CT-xxx` | Cenário de teste |
 
-## Mockups
+Use-os em issues, commits e testes — é assim que se mantém rastreabilidade entre o
+especificado e o construído.
 
-Interface proposals for the pharmacy-facing console: `mockup-atendimento.png`,
-`mockup-dashboard.png`, `mockup-inventario.png`.
+## Diagramas
 
-## Prototypes
+| Ficheiro | Mostra |
+|---|---|
+| `diagramas/arquitetura.png` | Vista de contentores |
+| `diagramas/fluxo-escalonamento.png` | O gate a decidir antes da IA |
+| `diagramas/estado-escalonamento.png` | Ciclo de vida do escalonamento |
+| `diagramas/estado-reserva.png` | Ciclo de vida da reserva e impacto no stock |
+| `diagramas/modelo-dados.png` | Modelo entidade-relação multi-tenant |
+| `diagramas/mockup-*.png` | Propostas de interface |
 
-Working React prototypes live in [`../prototipos/`](../prototipos):
+## Protótipos
 
-- **`canal-cliente.jsx`** — customer-facing channel with the safety gate, plus the
-  commercial landing page and lead capture used for market validation
-- **`consola-interna.jsx`** — internal pharmacy console: escalation queue with SLA,
-  reservation lifecycle, inventory, and audit trail
+Em [`../prototipos/`](../prototipos):
 
-These validate behaviour and flow. They are not the production implementation — the
-real system is Angular + Spring Boot per the specification.
+- **`canal-cliente.jsx`** — canal do cliente com o motor de segurança, landing
+  comercial e captação de leads
+- **`consola-interna.jsx`** — consola da farmácia: fila com SLA, ciclo de vida das
+  reservas, inventário e auditoria
+
+Validam comportamento e fluxo. Não são a implementação de produção.
